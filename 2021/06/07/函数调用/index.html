@@ -20,23 +20,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lizi-learner.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lizi&#39;s Blog">
-<meta property="og:url" content="https://lizi-learner.github.io/index.html">
+<meta name="description" content="函数有两个隐式的函数参数，this和arguments。两者会被静默的传递给函数，并且可以向函数体内显式声明的参数意义被正常访问。这两个参数在Javascript代码中至关重要。由于调用函数的方式对函数的隐式参数有很大影响，我们需要理解函数的调用。 隐含参数 arguments arguments参数是一个类数组结构，能够允许我们访问传递给函数的所有参数  this this 代表函数调用相关联的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数调用">
+<meta property="og:url" content="https://lizi-learner.github.io/2021/06/07/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/index.html">
 <meta property="og:site_name" content="Lizi&#39;s Blog">
+<meta property="og:description" content="函数有两个隐式的函数参数，this和arguments。两者会被静默的传递给函数，并且可以向函数体内显式声明的参数意义被正常访问。这两个参数在Javascript代码中至关重要。由于调用函数的方式对函数的隐式参数有很大影响，我们需要理解函数的调用。 隐含参数 arguments arguments参数是一个类数组结构，能够允许我们访问传递给函数的所有参数  this this 代表函数调用相关联的">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-07T08:48:48.000Z">
+<meta property="article:modified_time" content="2021-06-07T10:38:26.903Z">
 <meta property="article:author" content="Jie Li">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://lizi-learner.github.io/">
+<link rel="canonical" href="https://lizi-learner.github.io/2021/06/07/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:true,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:&quot;&quot;,&quot;permalink&quot;:&quot;&quot;,&quot;path&quot;:&quot;index.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lizi-learner.github.io&#x2F;2021&#x2F;06&#x2F;07&#x2F;%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;07&#x2F;函数调用&#x2F;&quot;,&quot;title&quot;:&quot;函数调用&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>Lizi's Blog</title>
+<title>函数调用 | Lizi's Blog</title>
   
 
 
@@ -91,7 +95,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -104,6 +108,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E5%90%AB%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">隐含参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">函数调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">直接调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E8%A2%AB%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">作为方法被调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%A2%AB%E8%B0%83%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">作为构造函数被调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8apply%E5%92%8Ccall%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">使用apply和call方法调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">解决函数上下文问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%BA%94%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">解决方案应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.2.1.</span> <span class="nav-text">缓存器的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%B6%E6%97%B6%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="nav-number">3.2.2.</span> <span class="nav-text">延时装饰器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8Dthis%E4%B8%A2%E5%A4%B1"><span class="nav-number">3.2.3.</span> <span class="nav-text">修复this丢失</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">箭头函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89this"><span class="nav-number">4.1.</span> <span class="nav-text">没有this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8new"><span class="nav-number">4.2.</span> <span class="nav-text">不能使用new</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89arguments"><span class="nav-number">4.3.</span> <span class="nav-text">没有arguments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0vsbind"><span class="nav-number">4.4.</span> <span class="nav-text">箭头函数vsbind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -145,16 +150,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://lizi-learner.github.io/2021/06/07/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -167,9 +173,9 @@
       <meta itemprop="name" content="Lizi's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/07/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">函数调用</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          函数调用
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -193,7 +199,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>函数有两个隐式的函数参数，this和arguments。<strong>两者会被静默的传递给函数</strong>，并且可以向函数体内显式声明的参数意义被正常访问。这两个参数在Javascript代码中至关重要。由于调用函数的方式对函数的隐式参数有很大影响，我们需要理解函数的调用。</p>
+        <p>函数有两个隐式的函数参数，this和arguments。<strong>两者会被静默的传递给函数</strong>，并且可以向函数体内显式声明的参数意义被正常访问。这两个参数在Javascript代码中至关重要。由于调用函数的方式对函数的隐式参数有很大影响，我们需要理解函数的调用。</p>
 <h2 id="隐含参数"><a href="#隐含参数" class="headerlink" title="隐含参数"></a>隐含参数</h2><ul>
 <li><p>arguments</p>
 <p>arguments参数是一个<strong>类数组结构</strong>，能够允许我们访问传递给函数的所有参数</p>
@@ -314,7 +320,6 @@
 <li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/">MDN</a></li>
 </ul>
 
-      
     </div>
 
     
@@ -322,397 +327,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/05/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="prev" title="闭包和作用域">
+                  <i class="fa fa-chevron-left"></i> 闭包和作用域
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lizi-learner.github.io/2021/06/05/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jie Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lizi's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/05/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="post-title-link" itemprop="url">闭包和作用域</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-05 20:18:17" itemprop="dateCreated datePublished" datetime="2021-06-05T20:18:17+08:00">2021-06-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-06 22:15:07" itemprop="dateModified" datetime="2021-06-06T22:15:07+08:00">2021-06-06</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>当在外部函数中声明内部函数时，不仅定义了函数的声明，而且还创建了一个闭包。该闭包不仅包含了函数的声明，还包含了在函数声明时该作用域中的所有变量。当最终执行内部函数时，尽管声明的作用域已经消失了，但是通过闭包，仍然能够访问到原始作用域。</p>
-<h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>通过执行上下文跟踪代码。</p>
-<h3 id="执行上下文-1"><a href="#执行上下文-1" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>JS引擎执行代码时，每一条语句都处于特定的执行上下文中。</p>
-<p>有两种执行上下文：</p>
-<ul>
-<li>全局执行上下文：当JS程序开始执行时就创建了全局上下文</li>
-<li>函数执行上下文：在每次调用函数时，就会创建一个新的函数执行上下文</li>
-</ul>
-<p>JS是单线程，在某个特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文必须停止执行，并创建新的函数执行上下文来执行函数。当函数执行完成后，将函数执行上下文销毁，并重新回到发生调用时的执行上下文中。所以需要<strong>跟踪执行上下文。</strong></p>
-<h3 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h3><p>执行上下文栈又称为调用栈。跟踪执行上下文，即正在执行的上下文和正在等待的上下文，最简单的方法是使用调用栈。</p>
-<h2 id="词法环境"><a href="#词法环境" class="headerlink" title="词法环境"></a>词法环境</h2><p>词法环境是js引擎内部用来跟踪标识符与特定变量之间的映射关系。通常称为作用域。</p>
-<p>在JS中，每个<code>运行的函数</code>、<code>代码块&#123;...&#125;</code>以及<code>整个脚本</code>，都有一个被称为<strong>词法环境</strong>的内部的关联对象。</p>
-<p>词法环境由两部分组成：</p>
-<ul>
-<li>环境记录：存储所有局部变量作为其属性的对象</li>
-<li>对外部词法环境的引用。</li>
-</ul>
-<p>以下演示了代码执行过程中全局词法环境的变化：</p>
-<p><img src="https://zh.javascript.info/article/closure/closure-function-declaration.svg"></p>
-<ul>
-<li>当脚本开始运行，词法环境预先填充了所有声明的变量，他们处于undefined状态</li>
-<li>但函数声明会立即变为即用型函数</li>
-</ul>
-<p><strong>访问变量</strong></p>
-<p><strong>当代码要访问一个变量时 —— 首先会搜索内部词法环境，然后搜索外部环境，然后搜索更外部的环境，以此类推，直到全局词法环境。</strong></p>
-<p>如果在任何地方都找不到这个变量，那么在严格模式下就会报错（在非严格模式下，为了向下兼容，给未定义的变量赋值会创建一个全局变量）。</p>
-<h2 id="闭包原理"><a href="#闭包原理" class="headerlink" title="闭包原理"></a>闭包原理</h2><p>所有函数都有名为 <code>[[Environment]]</code> 的隐藏属性，该属性保存了对创建该函数的词法环境的引用。</p>
-<p>因此，在函数内声明的函数在<code>[[Environment]]</code>保存了外部函数的词法环境（即外部作用域）的引用，因此就算执行内部函数时，外部作用域已经消失了，就比如内部函数被外部函数返回并在外部执行时（如下），内部函数还是可以访问到外部函数的词法环境。</p>
-<p><img src="https://zh.javascript.info/article/closure/closure-makecounter-nested-call-2.svg"></p>
-<p><strong>闭包的缺点</strong></p>
-<p>通常，函数调用完成后，会将词法环境和其中的所有变量从内存中删除。因为现在没有任何对它们的引用了。与 JavaScript 中的任何其他对象一样，词法环境仅在可达时才会被保留在内存中。</p>
-<p>但是，如果有一个嵌套的函数在函数结束后仍可达，则它将具有引用词法环境的 <code>[[Environment]]</code> 属性。即使在函数执行完成后，词法环境仍然可达。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>《JavaScript忍者秘籍》</li>
-<li><a target="_blank" rel="noopener" href="https://zh.javascript.info/">现代javascript教程</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lizi-learner.github.io/2021/06/04/keys-values-entries/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jie Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lizi's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/04/keys-values-entries/" class="post-title-link" itemprop="url">keys(),values(),entries()迭代器对象</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-06-04 11:08:12 / 修改时间：11:33:19" itemprop="dateCreated datePublished" datetime="2021-06-04T11:08:12+08:00">2021-06-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>keys()，values()，entries()能返回一个迭代器对象，方便我们对数据的迭代。</p>
-<p>其中，对于普通对象和一些特殊的数据类型，它们的使用方式是不一样的。</p>
-<h2 id="obj-keys"><a href="#obj-keys" class="headerlink" title="obj.keys"></a>obj.keys</h2><p>obj.keys()调用语法支持以下数据类型：</p>
-<ul>
-<li>Map</li>
-<li>Set</li>
-<li>Array</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> map.keys())&#123;...&#125; 		<span class="comment">//key</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> map.values())&#123;...&#125;		<span class="comment">//value</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> map.entries())&#123;...&#125;	<span class="comment">//[key, value]，for..of默认使用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> set.keys())&#123;...&#125; 		<span class="comment">//value</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> set.values())&#123;...&#125;		<span class="comment">//value</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> set.entries())&#123;...&#125;	<span class="comment">//[value, value]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> arr.keys())&#123;...&#125; 		<span class="comment">//index</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> arr.values())&#123;...&#125;		<span class="comment">//value</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> arr.entries())&#123;...&#125;	<span class="comment">//[index, value]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Object-keys，values，entries"><a href="#Object-keys，values，entries" class="headerlink" title="Object.keys，values，entries"></a><a target="_blank" rel="noopener" href="https://zh.javascript.info/keys-values-entries#objectkeysvaluesentries">Object.keys，values，entries</a></h2><p>对于普通对象可以使用以下方法迭代</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys(obj)</a>：返回一个包含该对象所有的键的数组。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/values">Object.values(obj)</a>：返回一个包含该对象所有的值的数组。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/entries">Object.entries(obj)</a>：返回一个包含该对象所有 [key, value] 键值对的数组。</li>
-</ul>
-<p>可以利用以上方法让对象能够使用数组方法</p>
-<ul>
-<li><p>Object.fromEntries(array)：将数组转换为对象</p>
-</li>
-<li><p><strong>转换对象</strong></p>
-<p>对象缺少数组存在的许多方法，例如 <code>map</code> 和 <code>filter</code> 等。</p>
-<p>如果我们想应用它们，那么我们可以使用 <code>Object.entries</code>，然后使用 <code>Object.fromEntries</code>：</p>
-<ul>
-<li><p>使用 <code>Object.entries(obj)</code> 从 <code>obj</code> 获取由键/值对组成的数组。</p>
-</li>
-<li><p>对该数组使用数组方法，例如 <code>map</code>。</p>
-</li>
-<li><p>对结果数组使用 <code>Object.fromEntries(array)</code> 方法，将结果转回成对象。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://zh.javascript.info/keys-values-entries">现代 JavaScript 教程</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lizi-learner.github.io/2021/06/03/%E4%B8%8D%E5%90%8C%E7%9A%84%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jie Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lizi's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/03/%E4%B8%8D%E5%90%8C%E7%9A%84%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">不同的相等比较方式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-06-03 22:07:31 / 修改时间：22:41:42" itemprop="dateCreated datePublished" datetime="2021-06-03T22:07:31+08:00">2021-06-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Javascript中有多种不同的比较方式，我们需要在不同的情况采用不同的方式做相等比较。</p>
-<h2 id="相等比较算法"><a href="#相等比较算法" class="headerlink" title="相等比较算法"></a>相等比较算法</h2><ul>
-<li>The Abstract Equality Comparison Algorithm (==)</li>
-<li>The Strict Equality Comparison Algorithm (===)</li>
-<li>SameValue (Object.is())</li>
-<li>SameValueZero (暂未提供API)</li>
-</ul>
-<h2 id=""><a href="#" class="headerlink" title="=="></a>==</h2><p>等于操作符会先进行强制类型转换然后再确定操作数是否相等。遵循以下规则</p>
-<ul>
-<li>不同类型的值在比较时会被转换为数值再比较，false转换为0，true转换为1</li>
-<li>null和undefined相等，它们不能转换为其他类型的值进行比较(仅限于相等操作符)</li>
-<li>NaN与任何值都不相等，包括它自己。</li>
-</ul>
-<h2 id="-1"><a href="#-1" class="headerlink" title="==="></a>===</h2><p><strong>严格相等运算符 <code>===</code> 在进行比较时不会做任何的类型转换。</strong></p>
-<ul>
-<li>只要操作数类型不同就返回false</li>
-<li>null不等于undefined</li>
-<li>NaN不等于NaN</li>
-</ul>
-<h2 id="SameValue"><a href="#SameValue" class="headerlink" title="SameValue"></a>SameValue</h2><p>ES6新增方法，<code>Object.js()</code>内部采用的比较算法是SameValue(x, y)。它只与===有以下区别</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="number">0</span>, -<span class="number">0</span>) <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="SameValueZero"><a href="#SameValueZero" class="headerlink" title="SameValueZero"></a>SameValueZero</h2><p>在<code>map</code>，<code>set</code>，<code>includes</code>方法中使用的比较算法是SameValueZero，它与sameValue的区别只有0等于-0</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="number">0</span>, <span class="literal">NaN</span>]</span><br><span class="line">a.includes(-<span class="number">0</span>) <span class="comment">// true</span></span><br><span class="line">a.includes(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/mengfangui/p/9343163.html">ES标准中的相等比较算法 SameValue SameValueZero</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lizi-learner.github.io/2021/06/03/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%98%AFLizi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jie Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lizi's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/03/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%98%AFLizi/" class="post-title-link" itemprop="url">你好，我是Lizi</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-06-03 17:07:44 / 修改时间：17:32:45" itemprop="dateCreated datePublished" datetime="2021-06-03T17:07:44+08:00">2021-06-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我是一名正在努力学习前端知识的小白，希望能够用Blog记录下一路以来学习的感谢和心得。因此使用hexo搭建了这个博客，一路上也是踩了一些坑，</p>
-<p>记录下博客搭建的过程吧！</p>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ul>
-<li>安装hexo</li>
-<li>新建博客</li>
-<li>部署到github托管</li>
-<li>个性化设置</li>
-</ul>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo官网</a></li>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo主题官网</a></li>
-<li><a target="_blank" rel="noopener" href="https://theme-next.js.org/">Next主题文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo 搭建个人网站详细教程</a></li>
-</ul>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li><p>在部署时命令行hexo deploy报错，这是由于git版本没有更新的缘故</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git update-git-for-windows	</span><br></pre></td></tr></table></figure></li>
-<li><p>next主题不起效等错误</p>
-<p>事实证明：</p>
-<ul>
-<li>不要盲目相信网上过时的信息。</li>
-<li>官方文档就是最好的帮助。</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
