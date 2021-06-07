@@ -20,23 +20,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lizi-learner.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lizi&#39;s Blog">
-<meta property="og:url" content="https://lizi-learner.github.io/archives/index.html">
+<meta name="description" content="javascript遍历对象的属性有多种不同的方法，主要原因有以下几点  对象属性有可枚举和不可枚举之分，这是由属性的enumerable描述符决定的（包括数据属性和访问器属性） 对象可能会从原型对象上继承属性 对象属性有常规属性（数据属性和访问器属性）和符号属性(Symbol)  不同的遍历方法会遍历不同范围的属性。  for in 循环 for…in循环会遍历可枚举的自身属性和继承属性（可枚举">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遍历对象属性">
+<meta property="og:url" content="https://lizi-learner.github.io/2021/06/07/%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/index.html">
 <meta property="og:site_name" content="Lizi&#39;s Blog">
+<meta property="og:description" content="javascript遍历对象的属性有多种不同的方法，主要原因有以下几点  对象属性有可枚举和不可枚举之分，这是由属性的enumerable描述符决定的（包括数据属性和访问器属性） 对象可能会从原型对象上继承属性 对象属性有常规属性（数据属性和访问器属性）和符号属性(Symbol)  不同的遍历方法会遍历不同范围的属性。  for in 循环 for…in循环会遍历可枚举的自身属性和继承属性（可枚举">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-07T15:04:49.000Z">
+<meta property="article:modified_time" content="2021-06-07T15:28:37.952Z">
 <meta property="article:author" content="Jie Li">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://lizi-learner.github.io/archives/">
+<link rel="canonical" href="https://lizi-learner.github.io/2021/06/07/%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:&quot;&quot;,&quot;permalink&quot;:&quot;&quot;,&quot;path&quot;:&quot;archives&#x2F;index.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lizi-learner.github.io&#x2F;2021&#x2F;06&#x2F;07&#x2F;%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;07&#x2F;遍历对象属性&#x2F;&quot;,&quot;title&quot;:&quot;遍历对象属性&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>归档 | Lizi's Blog</title>
+<title>遍历对象属性 | Lizi's Blog</title>
   
 
 
@@ -145,149 +149,108 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 6 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lizi-learner.github.io/2021/06/07/%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jie Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lizi's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          遍历对象属性
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+
+      <time title="创建时间：2021-06-07 23:04:49 / 修改时间：23:28:37" itemprop="dateCreated datePublished" datetime="2021-06-07T23:04:49+08:00">2021-06-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>javascript遍历对象的属性有多种不同的方法，主要原因有以下几点</p>
+<ul>
+<li>对象属性有可枚举和不可枚举之分，这是由属性的enumerable描述符决定的（包括数据属性和访问器属性）</li>
+<li>对象可能会从原型对象上继承属性</li>
+<li>对象属性有常规属性（数据属性和访问器属性）和符号属性(Symbol)</li>
+</ul>
+<p>不同的遍历方法会遍历不同范围的属性。</p>
+<ul>
+<li><p><code>for in </code>循环</p>
+<p>for…in循环会遍历可枚举的自身属性和继承属性（可枚举，继承的常规属性，即不包含符号属性）</p>
+<p>如果想用for…in并想排除继承的属性，可以使用内建方法<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">obj.hasOwnProperty(key)</a>：如果 obj具有自己的（非继承的）名为 key的属性，则返回 true。</p>
+</li>
+<li><p><code>Object.keys() / Object.values()</code></p>
+<p>遍历自身可枚举的属性（可枚举，非继承属性，不包含符号属性）</p>
+</li>
+<li><p><code>Object.getOwnPropertyNames()方法</code></p>
+<p>返回对象实例的常规属性数组，不包含符号属性（可枚举，不可枚举，非继承，非符号）</p>
+</li>
+<li><p><code>Object.getOwnPropertyDescriptors()方法</code></p>
+<p>返回同时包含常规和符号属性描述的对象（非继承）</p>
+</li>
+<li><p><code>Object.getOwnPropertySymbols()方法</code></p>
+<p>返回对象实例的符号属性数组（非继承）</p>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-06-07T23:04:49+08:00"
-              content="2021-06-07">
-          06-07
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/07/%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/" itemprop="url">
-            <span itemprop="name">遍历对象属性</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/07/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" rel="prev" title="函数调用">
+                  <i class="fa fa-chevron-left"></i> 函数调用
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-06-07T16:48:48+08:00"
-              content="2021-06-07">
-          06-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/07/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" itemprop="url">
-            <span itemprop="name">函数调用</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-06-05T20:18:17+08:00"
-              content="2021-06-05">
-          06-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/05/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/" itemprop="url">
-            <span itemprop="name">闭包和作用域</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-06-04T11:08:12+08:00"
-              content="2021-06-04">
-          06-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/04/keys-values-entries/" itemprop="url">
-            <span itemprop="name">keys(),values(),entries()迭代器对象</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-06-03T22:07:31+08:00"
-              content="2021-06-03">
-          06-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/03/%E4%B8%8D%E5%90%8C%E7%9A%84%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83%E6%96%B9%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">不同的相等比较方式</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-06-03T17:07:44+08:00"
-              content="2021-06-03">
-          06-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/03/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%98%AFLizi/" itemprop="url">
-            <span itemprop="name">你好，我是Lizi</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>

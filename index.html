@@ -116,7 +116,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -146,6 +146,95 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lizi-learner.github.io/2021/06/07/%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jie Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lizi's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/07/%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/" class="post-title-link" itemprop="url">遍历对象属性</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-06-07 23:04:49 / 修改时间：23:28:37" itemprop="dateCreated datePublished" datetime="2021-06-07T23:04:49+08:00">2021-06-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>javascript遍历对象的属性有多种不同的方法，主要原因有以下几点</p>
+<ul>
+<li>对象属性有可枚举和不可枚举之分，这是由属性的enumerable描述符决定的（包括数据属性和访问器属性）</li>
+<li>对象可能会从原型对象上继承属性</li>
+<li>对象属性有常规属性（数据属性和访问器属性）和符号属性(Symbol)</li>
+</ul>
+<p>不同的遍历方法会遍历不同范围的属性。</p>
+<ul>
+<li><p><code>for in </code>循环</p>
+<p>for…in循环会遍历可枚举的自身属性和继承属性（可枚举，继承的常规属性，即不包含符号属性）</p>
+<p>如果想用for…in并想排除继承的属性，可以使用内建方法<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">obj.hasOwnProperty(key)</a>：如果 obj具有自己的（非继承的）名为 key的属性，则返回 true。</p>
+</li>
+<li><p><code>Object.keys() / Object.values()</code></p>
+<p>遍历自身可枚举的属性（可枚举，非继承属性，不包含符号属性）</p>
+</li>
+<li><p><code>Object.getOwnPropertyNames()方法</code></p>
+<p>返回对象实例的常规属性数组，不包含符号属性（可枚举，不可枚举，非继承，非符号）</p>
+</li>
+<li><p><code>Object.getOwnPropertyDescriptors()方法</code></p>
+<p>返回同时包含常规和符号属性描述的对象（非继承）</p>
+</li>
+<li><p><code>Object.getOwnPropertySymbols()方法</code></p>
+<p>返回对象实例的符号属性数组（非继承）</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
