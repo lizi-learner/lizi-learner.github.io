@@ -186,7 +186,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-09 12:16:39" itemprop="dateModified" datetime="2021-06-09T12:16:39+08:00">2021-06-09</time>
+        <time title="修改时间：2021-06-09 15:33:18" itemprop="dateModified" datetime="2021-06-09T15:33:18+08:00">2021-06-09</time>
       </span>
 
   
@@ -261,12 +261,68 @@
 <p>注意这还有一点：任意内建构造函数的原型(__proto)是Function的原型，包括Function</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype	<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="原型和继承关系"><a href="#原型和继承关系" class="headerlink" title="原型和继承关系"></a>原型和继承关系</h4><p>原型和实例的关系可以通过两种方式来确定</p>
+<h4 id="原型和继承关系"><a href="#原型和继承关系" class="headerlink" title="原型和继承关系"></a>原型和继承关系</h4><p>原型和实例的关系可以通过三种方式来确定</p>
 <ul>
-<li><p>instanceof操作符</p>
-<p>teacher instanceof Person：js引擎检查Person的原型是否存在于teacher的原型链上</p>
+<li><p>instanceof 操作符</p>
+<ul>
+<li><p>语法：obj instanceof Class</p>
+</li>
+<li><p>执行过程：</p>
+<ul>
+<li><p>如果Class有静态方法Symbol.hasInstance，那么直接调用这个方法</p>
+</li>
+<li><p>如果没有该方法，js引擎检查Class的原型是否存在于obj的原型链上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">obj.__proto__ === Class.prototype?</span><br><span class="line">obj.__proto__.__proto__ === Class.prototype?</span><br><span class="line">obj.__proto__.__proto__.__proto__ === Class.prototype?</span><br><span class="line">...</span><br><span class="line"><span class="comment">// 如果任意一个的答案为 true，则返回 true</span></span><br><span class="line"><span class="comment">// 否则，如果我们已经检查到了原型链的尾端，则返回 false</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>isPrototypeOf()</p>
+<ul>
+<li>语法：objA.isPrototypeOf(objB)</li>
+<li>如果 objA处在 objB 的原型链中，则返回 true</li>
+</ul>
+</li>
+<li><p> Object.prototype.toString 方法</p>
+</li>
+<li><p>内建对象类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方便起见，将 toString 方法复制到一个变量中</span></span><br><span class="line"><span class="keyword">let</span> objectToString = <span class="built_in">Object</span>.prototype.toString;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 它是什么类型的？</span></span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"></span><br><span class="line">alert( objectToString.call(arr) ); <span class="comment">// [object Array]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于 number 类型，结果是 <code>[object Number]</code></li>
+<li>对于 boolean 类型，结果是 <code>[object Boolean]</code></li>
+<li>对于 <code>null</code>：<code>[object Null]</code></li>
+<li>对于 <code>undefined</code>：<code>[object Undefined]</code></li>
+<li>对于数组：<code>[object Array]</code></li>
+</ul>
+</li>
+<li><p>自定义对象类型</p>
+<p>可以使用特殊的对象属性 <code>Symbol.toStringTag</code> 自定义对象的 <code>toString</code> 方法的行为。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toStringTag]: <span class="string">&quot;User&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">alert( &#123;&#125;.toString.call(user) ); <span class="comment">// [object User]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>总结</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">用于</th>
+<th align="left">返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>typeof</code></td>
+<td align="left">原始数据类型</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left"><code>&#123;&#125;.toString</code></td>
+<td align="left">原始数据类型，内建对象，包含 <code>Symbol.toStringTag</code> 属性的对象</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left"><code>instanceof</code></td>
+<td align="left">对象</td>
+<td align="left">true/false</td>
+</tr>
+</tbody></table>
 </li>
 </ul>
 <h4 id="原型链的问题"><a href="#原型链的问题" class="headerlink" title="原型链的问题"></a>原型链的问题</h4><ul>
@@ -382,6 +438,25 @@
 <p>在下面的例子中，使用非方法（non-method）语法进行了比较。未设置 <code>[[HomeObject]]</code> 属性，并且继承无效：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> animal = &#123;</span><br><span class="line">  <span class="attr">eat</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 这里是故意这样写的，而不是 eat() &#123;...</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rabbit = &#123;</span><br><span class="line">  <span class="attr">__proto__</span>: animal,</span><br><span class="line">  <span class="attr">eat</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">super</span>.eat();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">rabbit.eat();  <span class="comment">// 错误调用 super（因为这里没有 [[HomeObject]]）</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="继承内建类"><a href="#继承内建类" class="headerlink" title="继承内建类"></a>继承内建类</h4><p>内建的类，例如 <code>Array</code>，<code>Map</code> 等也都是可以扩展的（extendable）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给 PowerArray 新增了一个方法（可以增加更多）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PowerArray</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">isEmpty</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.length === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> PowerArray(<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">50</span>);</span><br><span class="line">alert(arr.isEmpty()); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> filteredArr = arr.filter(<span class="function"><span class="params">item</span> =&gt;</span> item &gt;= <span class="number">10</span>);</span><br><span class="line">alert(filteredArr); <span class="comment">// 10, 50</span></span><br><span class="line">alert(filteredArr.isEmpty()); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>上例内建的方法例如 <code>filter</code>，<code>map</code> 等返回的正是子类 <code>PowerArray</code> 的新对象。它们内部使用了对象的 <code>constructor</code> 属性来实现这一功能。</p>
+<p>具体返回规则如下：</p>
+<ul>
+<li><p>如果类存在Symbol.species的静态属性，应返回 JavaScript 在内部用来在 <code>map</code> 和 <code>filter</code> 等方法中创建新实体的 <code>constructor</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内建方法将使用这个作为 constructor</span></span><br><span class="line"><span class="keyword">static</span> get [<span class="built_in">Symbol</span>.species]() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>如果不存在Symbol.species的静态属性，内建方法使用对象的constructor来创建返回的新对象。</p>
+</li>
+</ul>
+<p><strong>内建类没有静态方法继承</strong></p>
+<p>原生的类和我们自定义的类不同。</p>
+<ul>
+<li><p>自定义类时，当子类extends父类是，静态方法和非静态方法都会被继承，这跟extends操作符原理有关</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype.__proto__ === Parent.prototype	<span class="comment">//true</span></span><br><span class="line">Child.__proto__ === Parent	<span class="comment">//true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>原生的类虽然相互扩展，但他们互相不继承静态方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="built_in">Array</span>.__proto__ === <span class="built_in">Function</span>.prototype</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li>《JavaScript忍者秘籍》</li>
 <li>《JavaScript高级程序设计》</li>
