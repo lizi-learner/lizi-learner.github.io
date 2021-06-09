@@ -28,8 +28,9 @@
 <meta property="og:description" content="创建对象工厂模式12345678910function createPerson(name, age, job)&amp;#123;    let o &#x3D; new Object();    o.name &#x3D; name;    o.age &#x3D; age;    o.job &#x3D; job;    o.sayName &#x3D; function()&amp;#123;        console.log(this.name);">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zh.javascript.info/article/function-prototype/rabbit-prototype-constructor.svg">
+<meta property="og:image" content="https://zh.javascript.info/article/native-prototypes/native-prototypes-classes.svg">
 <meta property="article:published_time" content="2021-06-08T07:00:18.000Z">
-<meta property="article:modified_time" content="2021-06-08T11:19:51.182Z">
+<meta property="article:modified_time" content="2021-06-09T04:16:39.030Z">
 <meta property="article:author" content="Jie Li">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zh.javascript.info/article/function-prototype/rabbit-prototype-constructor.svg">
@@ -186,10 +187,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-06-08 15:00:18 / 修改时间：19:19:51" itemprop="dateCreated datePublished" datetime="2021-06-08T15:00:18+08:00">2021-06-08</time>
+      <time title="创建时间：2021-06-08 15:00:18" itemprop="dateCreated datePublished" datetime="2021-06-08T15:00:18+08:00">2021-06-08</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-09 12:16:39" itemprop="dateModified" datetime="2021-06-09T12:16:39+08:00">2021-06-09</time>
+      </span>
 
   
 </div>
@@ -258,7 +265,11 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Teacher</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现Teacher继承Person</span></span><br><span class="line">Teacher.prototype = <span class="keyword">new</span> Person();</span><br><span class="line">conat teacher = <span class="keyword">new</span> Teacher()</span><br></pre></td></tr></table></figure>
 
 <p>原型链：teacher -&gt; new Person() -&gt; new Object()</p>
-<h4 id="默认原型"><a href="#默认原型" class="headerlink" title="默认原型"></a>默认原型</h4><p>任何函数的默认原型都是一个Object的实例</p>
+<h4 id="默认原型"><a href="#默认原型" class="headerlink" title="默认原型"></a>默认原型</h4><p>任何函数的默认原型都是一个Object的实例。</p>
+<p><img src="https://zh.javascript.info/article/native-prototypes/native-prototypes-classes.svg"></p>
+<p>注意这还有一点：任意内建构造函数的原型(__proto)是Function的原型，包括Function</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype	<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
 <h4 id="原型和继承关系"><a href="#原型和继承关系" class="headerlink" title="原型和继承关系"></a>原型和继承关系</h4><p>原型和实例的关系可以通过两种方式来确定</p>
 <ul>
 <li><p>instanceof操作符</p>
@@ -318,11 +329,19 @@
 <h4 id="继承基础"><a href="#继承基础" class="headerlink" title="继承基础"></a>继承基础</h4><p>使用extends关键字，就可以继承任何拥有[[constructor]]和原型的对象</p>
 <ul>
 <li><p>继承类</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rabbit</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>继承普通构造函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rabbit</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>在内部，关键字extends使用了旧的原型机制进行工作，他将Student.prototype.[[Prototype]]设置为Person.prototype（换一种说法，把Student.prototype，设置为原型等于Person.prototype的对象），相当于实现了原型链。</p>
+<p>在内部，关键字extends使用了旧的原型机制进行工作，</p>
+<p>所以，<code>Rabbit extends Animal</code> 创建了两个 <code>[[Prototype]]</code> 引用：</p>
+<ol>
+<li><code>Rabbit</code> 函数原型继承自 <code>Animal</code> 函数。</li>
+<li><code>Rabbit.prototype</code> 原型继承自 <code>Animal.prototype</code>。</li>
+</ol>
+<p>结果就是，继承对常规方法和静态方法都有效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rabbit</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对于静态方法</span></span><br><span class="line"><span class="comment">// 这个是寄生式组合继承没有实现的</span></span><br><span class="line">alert(Rabbit.__proto__ === Animal); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对于常规方法</span></span><br><span class="line">alert(Rabbit.prototype.__proto__ === Animal.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
 <h4 id="重写方法"><a href="#重写方法" class="headerlink" title="重写方法"></a>重写方法</h4><p>子类通常希望在父类方法的基础上进行调整或扩展其功能。此时可以使用super关键字</p>
 <ul>
 <li>执行super.method(…)来调用一个父类方法（实例方法和静态方法）</li>
